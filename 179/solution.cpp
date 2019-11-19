@@ -6,7 +6,7 @@ public:
         for(auto s : nums){
             res += to_string(s);
         }
-        return res;
+        return res[0] == '0' ? "0" : res;
     }
      
 };
