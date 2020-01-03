@@ -1,0 +1,49 @@
+//
+//  main.cpp
+//  
+//
+//  Created by Xiaoyuan Guo on 1/2/20.
+//
+
+#include <iostream>
+#include <algorithm>
+#include <iterator>
+using namespace std;
+//Second largest element in BST
+
+struct TreeNode{
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x): val(x), left(NULL), right(NULL) {}
+ };
+
+void secondLargest(TreeNode* root, int &c){
+    if(root == NULL || c == 2)
+        return;
+    secondLargest(root->right, c);
+    c++;
+    if(c == 2)
+        cout<<"secondLargest: "<<root->val<<endl;
+    secondLargest(root->left, c);
+}
+
+void secondSmallest(TreeNode* root, int &c){
+    if(root == NULL || c == 2)
+        return;
+    secondSmallest(root->left, c);
+    c++;
+    if(c == 2)
+        cout<<"secondLargest: "<<root->val<<endl;
+    secondSmallest(root->right, c);
+}
+
+int main(){
+    TreeNode *root = new TreeNode(10);
+    root->left = new TreeNode(5);
+    root->right = new TreeNode(20);
+    root->right->right = new TreeNode(30);
+    int c  = 0;
+    secondLargest(root,c);
+    return 0;
+}
