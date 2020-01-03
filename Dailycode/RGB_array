@@ -1,0 +1,33 @@
+Given an array of strictly the characters 'R', 'G', and 'B', segregate the values of the array so that all the Rs come first, the Gs come second, and the Bs come last. You can only swap elements of the array.
+
+//
+//  main.cpp
+//  
+//
+//  Created by Xiaoyuan Guo on 1/2/20.
+//
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+/*给一个左区间指针i, 右区间指针j,中间指针k用来做比较，每次判断一个数应该加入左区间还是右区间，如果左区间，交换左区间的最右边界和当前数，k++，i++,若是右区间，
+则交换右区间的最左边界和当前数，右区间的边界向左减一，但k指针不变。
+*/
+int main(){
+    char arr[] = {'G', 'B', 'R', 'R', 'B', 'R', 'G'};
+    int n = 7;
+    int i = -1, j = n, k = i+1;
+    while(k < j){
+        if(arr[k] == 'G')
+            k++;
+        else if(arr[k] == 'R'){
+            swap(arr[k++],arr[++i]);
+        }else{
+            swap(arr[k],arr[--j]);
+        }
+    }    
+    for(int k = 0; k < n; k++)
+        cout<<char(arr[k])<<" ";
+    cout<<endl;
+    return 0;
+}
